@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 
+# This gem provides popper.js assets as a Ruby gem.
+gem 'popper_js', '~> 1.14.3'
 # Install Bootstrap
 gem 'bootstrap', '~> 4.1.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
