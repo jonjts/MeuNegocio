@@ -1,17 +1,17 @@
 <div id="clientes_table">
    <table class="table table-striped" >
       <thead>
-         <th></th>
-         <th>Nome</th>
-         <th>Data cadastro</th>
+         <th scope="col"></th>
+         <th scope="col">Nome</th>
+         <th scope="col">Data cadastro</th>
       </thead>
       <tbody>
          <% clientes.each do |cliente| %>
          <tr>
             <td>
-               <div class="btn-group">
-                  <%= link_to fa_icon("pencil"), edit_cliente_path(cliente), class: "btn btn-default btn-xs", data: { toggle: "tooltip", placement: "top" },  title: t('links.edit_bill') %>
-                  <%= link_to fa_icon("trash"), cliente_path(cliente), method: :delete, "data-confirm": 'Remover cliente?', class: "btn btn-danger btn-xs", data: { toggle: "tooltip", placement: "top" },  title: 'Remover' %>
+               <div class="btn-group btn-group-sm">
+                  <%= link_to fa_icon("pencil"), edit_cliente_path(cliente), class: "btn btn-outline-primary btn-xs", data: { toggle: "tooltip", placement: "top" },  title: 'Alterar' %>
+                  <%= link_to fa_icon("trash"), cliente_path(cliente), method: :delete, "data-confirm": 'Remover cliente?', class: "btn btn-outline-danger btn-xs", data: { toggle: "tooltip", placement: "top" },  title: 'Remover' %>
                </div>
             </td>
             <td>
@@ -25,7 +25,7 @@
          <% end %>
       </tbody>
    </table>
-   <div style="text-align: center;">
+   <div class="float-right">
       <%= will_paginate clientes, renderer: BootstrapPagination::Rails%>
    </div>
 </div>

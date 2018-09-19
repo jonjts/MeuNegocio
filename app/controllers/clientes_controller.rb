@@ -1,7 +1,7 @@
 class ClientesController < ApplicationController
   def index
     @clientes = current_user.clientes.
-      paginate(:page => params[:page], :per_page => 10).order(nome: :asc)
+      paginate(:page => params[:page], :per_page => 20).order(nome: :asc)
     respond_to do |format|
       format.html
       format.json { render :json => @clientes }
@@ -55,6 +55,9 @@ class ClientesController < ApplicationController
 
   def param_cliente
     return params.require(:cliente).
-             permit(:id, :nome, :cpf, :rg)
+             permit(:id, :nome, :cpf, :rg,
+                    telefones_attributes: [:id, :cliente, :numero, :_destroy],
+                    enderecos_attributes: [:id, :cidade, :cep, :numero, :rua,
+                                           :complemento, :bairro, :_destroy])
   end
 end

@@ -1,5 +1,11 @@
 source 'https://rubygems.org'
 
+# A Rails gem of the jQuery Plugin that make masks on form fields and HTML elements.
+gem 'jquery_mask_rails', '~> 0.1.0'
+# Dynamic nested forms using jQuery made easy; works with formtastic, simple_form or default forms
+gem 'cocoon'
+# Ruby gem for phone validation and formatting using google libphonenumber library data
+gem 'phonelib'
 # gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap'
 # Validate, generate and format CPF/CNPJ numbers. Include command-line tools.

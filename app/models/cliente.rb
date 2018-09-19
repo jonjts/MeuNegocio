@@ -2,10 +2,15 @@ class Cliente < ApplicationRecord
   require "cpf_cnpj"
 
   belongs_to :user
+  has_many :telefones, dependent: :destroy, :inverse_of => :cliente
+  has_many :enderecos, dependent: :destroy, :inverse_of => :cliente
+
+  accepts_nested_attributes_for :telefones, :allow_destroy => true
+  accepts_nested_attributes_for :enderecos, :allow_destroy => true
 
   validates :nome, presence: true
   validate :valid_cpf_rg
-  validates :cpf, uniqueness: {scope: :user_id}
+  validates :cpf, uniqueness: {scope: :user_id}, :allow_blank => true
 
   private
 
