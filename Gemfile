@@ -1,6 +1,11 @@
 source 'https://rubygems.org'
 
-
+# The font-awesome font bundled as an asset for the rails asset pipeline
+gem "font-awesome-rails"
+#Forms made easy for Rails! It's tied to a simple DSL, with no opinion on markup.
+gem 'simple_form'
+# Flexible authentication solution for Rails with Warden.
+gem 'devise'
 # This gem provides popper.js assets as a Ruby gem.
 gem 'popper_js', '~> 1.14.3'
 # Install Bootstrap

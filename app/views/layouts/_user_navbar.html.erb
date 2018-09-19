@@ -1,0 +1,15 @@
+<%= content_tag :nav, class: "navbar navbar-light", style: 'background-color: #FFFFFF;' do %>
+  <%= content_tag :span, class: "navbar-brand mb-0 h1" do %>
+    <%= link_to "MeuNegócio", root_path, :class => "navbar-brand" %>
+  <% end %>
+    <%= content_tag :ul, class: 'nav justify-content-end' do%>
+        <%= content_tag :li, class: 'nav-item dropdown' do%>
+            <%= content_tag :a, fa_icon("user-circle-o", text: current_user.email) , class: 'nav-link dropdown-toggle', 'data-toggle': 'dropdown', href: '#', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false'%>
+                <%=content_tag :div, class: 'dropdown-menu' do %>
+                        <%= content_tag :a, 'Editar conta', class: 'dropdown-item', href: edit_user_registration_path %>
+                        <%= content_tag :div, '', class: 'dropdown-divider' %>
+                        <%= content_tag :a, 'Sair', class: 'dropdown-item', href: destroy_user_session_path, 'data-method': :delete %>
+                <% end %>
+        <% end%>
+    <% end %>
+<% end %>
