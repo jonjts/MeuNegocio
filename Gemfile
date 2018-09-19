@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+# gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bootstrap'
+# Validate, generate and format CPF/CNPJ numbers. Include command-line tools.
+gem "cpf_cnpj"
 # The font-awesome font bundled as an asset for the rails asset pipeline
 gem "font-awesome-rails"
 #Forms made easy for Rails! It's tied to a simple DSL, with no opinion on markup.

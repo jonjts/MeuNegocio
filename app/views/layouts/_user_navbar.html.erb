@@ -1,8 +1,18 @@
-<%= content_tag :nav, class: "navbar navbar-light", style: 'background-color: #FFFFFF;' do %>
+<%= content_tag :nav, class: "navbar navbar-expand-lg navbar-light justify-content-between", style: 'background-color: #FFFFFF;' do %>
   <%= content_tag :span, class: "navbar-brand mb-0 h1" do %>
     <%= link_to "MeuNegócio", root_path, :class => "navbar-brand" %>
   <% end %>
-    <%= content_tag :ul, class: 'nav justify-content-end' do%>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+   <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto ">
+      <li class="nav-item active">
+        <%= content_tag :a, 'Clientes', class: 'nav-link', href: clientes_path%>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+        <%= content_tag :ul, class: 'navbar-nav mr-auto' do%>
         <%= content_tag :li, class: 'nav-item dropdown' do%>
             <%= content_tag :a, fa_icon("user-circle-o", text: current_user.email) , class: 'nav-link dropdown-toggle', 'data-toggle': 'dropdown', href: '#', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false'%>
                 <%=content_tag :div, class: 'dropdown-menu' do %>
@@ -12,4 +22,8 @@
                 <% end %>
         <% end%>
     <% end %>
+     </ul>
+    
+  </div>
+    
 <% end %>

@@ -8,4 +8,6 @@ Rails.application.routes.draw do
                sessions: "users/sessions",
                passwords: "users/passwords",
              }, :path_names => {:sign_in => "login", :sign_out => "logout"}
+
+  resources :clientes
 end
