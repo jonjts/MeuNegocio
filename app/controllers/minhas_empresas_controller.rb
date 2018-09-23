@@ -1,6 +1,17 @@
 class MinhasEmpresasController < ApplicationController
   skip_before_action :set_empresa_session, only: [:new, :create]
 
+  def destroy
+    @minha_empresa = MinhaEmpresa.where(user_id: current_user.id, empresa_id: params[:id]).first
+    if @minha_empresa.destroy
+      flash["success"] = "Você saiu da empresa <b>" + @minha_empresa.empresa.nome + "</b>"
+      cookies.encrypted[:empresa_selecionada] = nil
+    else
+      flash["danger"] = @empresa.errors.full_messages.to_sentence
+    end
+    redirect_to minhas_empresas_path
+  end
+
   def index
     @empresas = current_user.empresas.
       paginate(:page => params[:page], :per_page => 20).order(nome: :asc)

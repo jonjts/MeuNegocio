@@ -10,6 +10,11 @@ Rails.application.routes.draw do
              }, :path_names => {:sign_in => "login", :sign_out => "logout"}
 
   resources :clientes
-  resources :empresas
+  resources :empresas do
+    put :select
+  end
   resources :minhas_empresas
+  resources :administradores do
+    delete :remover
+  end
 end

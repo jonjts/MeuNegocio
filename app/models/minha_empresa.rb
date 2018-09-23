@@ -4,6 +4,8 @@ class MinhaEmpresa < ActiveRecord::Base
   belongs_to :user, :inverse_of => :minhas_empresas
   belongs_to :empresa, :inverse_of => :minhas_empresas
 
+  has_many :administradores, dependent: :destroy, :foreign_key => "empresa_id"
+
   validates :user_id, presence: true
   validates :empresa, presence: true
 

@@ -1,6 +1,12 @@
 class EmpresasController < ApplicationController
   #before_action :authorize!, except: [:new, :create, :show, :index]
 
+  def select
+    cookies.encrypted[:empresa_selecionada] = (params[:empresa_id])
+    flash[:info] = "Empresa <b>#{empresa_selecionada.nome}</b> selecionada"
+    redirect_to root_path
+  end
+
   def edit
     @empresa = Empresa.find(params[:id])
   end

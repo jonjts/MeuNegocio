@@ -12,10 +12,33 @@
       </li>
     </ul>
     <ul class="navbar-nav">
+
         <%= content_tag :ul, class: 'navbar-nav mr-auto' do%>
-          <li class="nav-item active">
-            <%= content_tag :a, fa_icon('briefcase', text: empresa_selecionada.nome), class: 'nav-link', href: minhas_empresas_path%>
-          </li>
+          <%= content_tag :li, class: 'nav-item dropdown active' do%>
+                    <%= content_tag :a, fa_icon('briefcase', text: sou_admin(empresa_selecionada)) , class: 'nav-link dropdown-toggle', 'data-toggle': 'dropdown', href: '#', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false'%>
+                        <%=content_tag :div, class: 'dropdown-menu' do %>
+                        <h2 class="dropdown-header">Minhas Empresas</h2>
+                          <ul class="list-group list-group-flush">
+                            <% empresas_para_selecionar.each do |e|%>
+                              <%= link_to sou_admin(e), empresa_select_path(e), class:"dropdown-item", method: :put %> 
+                            <%end%>
+                            <% if empresas_para_selecionar.blank?%>
+                            <%= content_tag :div, class: 'd-flex justify-content-center' do%>
+                            <%= content_tag :p, 'Não exitem mais empresas para exibir', class: 'text-muted text-center', style: 'font-size:12px'%>
+                            <% end %>
+                            <% end %>
+                            <div class="dropdown-divider"></div>
+                            <div class="d-flex justify-content-center">
+                              <%= link_to 'ver mais', minhas_empresas_path, class:"card-link text-muted", style: 'font-size:12px;' %> 
+                            </div>
+                          </ul>
+                      <% end %>
+          <% end%>
+            
+
+          
+
+
         <%= content_tag :li, class: 'nav-item dropdown active' do%>
             <%= content_tag :a, fa_icon("user-circle-o", text: current_user.email) , class: 'nav-link dropdown-toggle', 'data-toggle': 'dropdown', href: '#', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false'%>
                 <%=content_tag :div, class: 'dropdown-menu' do %>
