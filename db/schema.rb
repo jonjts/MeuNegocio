@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180919174135) do
+ActiveRecord::Schema.define(version: 20180922154007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "administradores", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "empresa_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["empresa_id"], name: "index_administradores_on_empresa_id", using: :btree
+    t.index ["user_id"], name: "index_administradores_on_user_id", using: :btree
+  end
 
   create_table "clientes", force: :cascade do |t|
     t.string   "nome"
@@ -23,6 +32,14 @@ ActiveRecord::Schema.define(version: 20180919174135) do
     t.datetime "updated_at", null: false
     t.integer  "user_id",    null: false
     t.index ["user_id"], name: "index_clientes_on_user_id", using: :btree
+  end
+
+  create_table "empresas", force: :cascade do |t|
+    t.string   "nome",       null: false
+    t.integer  "criado_por", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["criado_por"], name: "index_empresas_on_criado_por", using: :btree
   end
 
   create_table "enderecos", force: :cascade do |t|
@@ -36,6 +53,15 @@ ActiveRecord::Schema.define(version: 20180919174135) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["cliente_id"], name: "index_enderecos_on_cliente_id", using: :btree
+  end
+
+  create_table "minhas_empresas", force: :cascade do |t|
+    t.integer  "empresa_id", null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["empresa_id"], name: "index_minhas_empresas_on_empresa_id", using: :btree
+    t.index ["user_id"], name: "index_minhas_empresas_on_user_id", using: :btree
   end
 
   create_table "telefones", force: :cascade do |t|
@@ -67,7 +93,12 @@ ActiveRecord::Schema.define(version: 20180919174135) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "administradores", "empresas"
+  add_foreign_key "administradores", "users"
   add_foreign_key "clientes", "users"
+  add_foreign_key "empresas", "users", column: "criado_por"
   add_foreign_key "enderecos", "clientes"
+  add_foreign_key "minhas_empresas", "empresas"
+  add_foreign_key "minhas_empresas", "users"
   add_foreign_key "telefones", "clientes"
 end

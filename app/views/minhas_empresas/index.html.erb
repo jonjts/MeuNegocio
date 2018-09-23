@@ -1,0 +1,12 @@
+<div class="card">
+  <div class="card-body">
+    <h3 class="card-title">Minhas Empresas</h3>
+    <hr>
+<%= link_to( 'Novo', new_minha_empresa_path , class: "btn btn-outline-primary") %>
+<br>
+<br>
+<div id="div_clientes_table">
+  <%= render 'minhas_empresas_table', empresas: @empresas %>
+</div>
+  </div>
+</div>

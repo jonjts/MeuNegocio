@@ -49,4 +49,6 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular "país", "países"
 
   inflect.irregular "User", "Users"
+  inflect.irregular "minha_empresa", "minhas_empresas"
+  inflect.irregular "minhaEmpresa", "minhasEmpresas"
 end

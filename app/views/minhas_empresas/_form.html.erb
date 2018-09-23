@@ -1,0 +1,27 @@
+<%= simple_form_for  @minhaEmpresa, defaults: {label_html: {class: 'form-title form'}}, html: {class: 'form-vertical'} do |f| %>
+<%= f.error_notification %>
+    <%= f.simple_fields_for :empresas do |fe| %>
+     <div class="row">
+            <div class="col-md-12 col-sm-12 col-lg-6">
+                <ul class="form-group list-unstyled">
+                    <li>
+                    <%= fe.label :nome%>
+                    <%= fe.text_field :nome, class: 'form-control empresa', :placeholder => 'Nome', name: 'minha_empresa[empresa_attributes][nome]'%>
+                    <%= fe.text_field :id, class: 'form-control empresa',type: 'hidden', name: 'minha_empresa[empresa_attributes][id]'%>
+                    </li>
+                </ul>
+            </div>
+        </div>    
+    <% end %>
+
+  <div class="row">
+    <div class="col-md-2">
+      <ul class="list-unstyled">
+        <li>
+          <%= f.submit 'Salvar', class: 'btn btn-primary card-link'%>
+          <%= link_to 'Voltar', :back, class: 'card-link' %>
+        </li>
+      </ul>
+    </div>
+  </div>
+<% end %>
