@@ -10,9 +10,7 @@
          <tr>
             <td>
                <div class="btn-group btn-group-sm">
-                  <%= link_to fa_icon("pencil"), edit_empresa_path(empresa), class: "btn btn-outline-primary btn-xs", data: { toggle: "tooltip", placement: "top" },  title: 'Alterar' %>
-                  <%= link_to fa_icon("sign-out"), minha_empresa_path(empresa), method: :delete, "data-confirm": 'Sair da empresa?', class: "btn btn-outline-danger btn-xs", data: { toggle: "tooltip", placement: "top" },  title: 'Sair da empresa' %>
-                  <%= remover_admin(empresa)%>
+                  <%= link_to fa_icon("search"), edit_empresa_path(empresa), class: "btn btn-outline-primary btn-xs", data: { toggle: "tooltip", placement: "top" },  title: 'Ver' %>
                </div>
             </td>
             <td>
