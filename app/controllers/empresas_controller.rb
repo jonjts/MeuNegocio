@@ -1,8 +1,28 @@
 class EmpresasController < ApplicationController
   #before_action :authorize!, except: [:new, :create, :show, :index]
 
+  def add_membro
+    @user = User.where(email: params[:email])
+    if !@user.blank?
+      @minhaEmpresa = MinhaEmpresa.new
+      @minhaEmpresa.user = @user.first
+      @minhaEmpresa.empresa_id = params[:empresa_id]
+      @minhaEmpresa.empresa.current_user = current_user
+      if @minhaEmpresa.save
+        @notice = {"success" => "<b>#{@user.first.identificacao}</b> adicionado como membro"}
+      else
+        @notice = {"danger" => "Não foi possível adicionar <b>#{@user.first.identificacao}</b><br>#{@minhaEmpresa.errors.full_messages.to_sentence}"}
+      end
+    else
+      @notice = {"danger" => "O usuário <b>#{params[:email]}</b> não foi encontrado"}
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def select
-    cookies.encrypted[:empresa_selecionada] = (params[:empresa_id])
+    cookies.signed[:empresa_selecionada] = (params[:empresa_id])
     flash[:info] = "Empresa <b>#{empresa_selecionada.nome}</b> selecionada"
     redirect_to root_path
   end

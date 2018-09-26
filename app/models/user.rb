@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
   has_many :empresas, :through => :minhas_empresas
   has_many :administradores, dependent: :destroy, :foreign_key => "user_id"
   has_many :empresas_administradas, :through => :administradores
+
+  def identificacao
+    "#{self.name}, #{self.email}"
+  end
 end

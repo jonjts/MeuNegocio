@@ -1,12 +1,8 @@
 module ApplicationHelper
-  def empresa_selecionada
-    if cookies.encrypted[:empresa_selecionada].blank?
-      return Empresa.new
-    end
-    return Empresa.find(cookies.encrypted[:empresa_selecionada])
-  end
-
   def sou_admin(empresa)
+    if empresa.blank?
+      return ""
+    end
     if empresa.sou_admin(current_user)
       tag = capture do
         concat empresa.nome
@@ -19,6 +15,6 @@ module ApplicationHelper
   end
 
   def empresas_para_selecionar
-    current_user.empresas.where.not(id: empresa_selecionada.id).order(:nome)
+    current_user.empresas.where.not(id: empresa_selecionada().id).order(:nome)
   end
 end

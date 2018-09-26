@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+
 # A Rails gem of the jQuery Plugin that make masks on form fields and HTML elements.
 gem 'jquery_mask_rails', '~> 0.1.0'
 # Dynamic nested forms using jQuery made easy; works with formtastic, simple_form or default forms

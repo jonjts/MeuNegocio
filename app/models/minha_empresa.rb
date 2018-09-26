@@ -8,8 +8,7 @@ class MinhaEmpresa < ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :empresa, presence: true
-
-  accepts_nested_attributes_for :empresa
+  # validates :user_id, uniqueness: {scope: :empresa_id}
 
   private
 

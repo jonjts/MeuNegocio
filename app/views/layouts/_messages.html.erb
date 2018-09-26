@@ -1,12 +1,12 @@
 <% flash.each do |key, value| %>
   <%
-sentence = key.dup
-sentence.sub! 'notice', 'success'
-sentence.sub! 'alert', 'danger'
-%>
-<br>
-  <div class="alert alert-<%= sentence %>" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <%= value.html_safe %>
-  </div>
+    sentence = key.dup
+    sentence.sub! 'notice', 'success'
+    sentence.sub! 'alert', 'danger'
+  %>
+  <br>
+    <div class="alert alert-<%= sentence %> alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%= value.html_safe %>
+    </div>
 <% end %>

@@ -41,9 +41,7 @@
             <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
               <div id= 'telefones_container'>
                 <div class="page-header">
-                  <h4>
-                    <%= render 'membros', empresa: @empresa%>
-                  </h4>
+                    <%= render 'membros', membros: membros(@empresa), empresa: @empresa%>
                 </div>
               </div>
             </div>

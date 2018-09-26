@@ -9,11 +9,13 @@ Rails.application.routes.draw do
                passwords: "users/passwords",
              }, :path_names => {:sign_in => "login", :sign_out => "logout"}
 
+  resources :minhas_empresas
+
   resources :clientes
   resources :empresas do
     put :select
+    put :add_membro, :on => :collection, :defaults => {:format => "js"}
   end
-  resources :minhas_empresas
   resources :administradores do
     delete :remover
   end

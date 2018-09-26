@@ -1,0 +1,6 @@
+$("#div_notice").empty();
+$("#div_notice").append("<%= escape_javascript(render partial: 'layouts/messages', locals: { flash: @notice } ) %>");
+<% if !@user.blank?%>
+    $("#membros_list").remove();
+    $("#div_membors_list").append("<%= escape_javascript(render partial: 'membros_list', locals: { membros: @minhaEmpresa.empresa.users, empresa: @minhaEmpresa.empresa } ) %>");
+<%end%>

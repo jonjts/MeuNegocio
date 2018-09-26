@@ -1,5 +1,32 @@
-<div class="list-group">
-  <% membros(empresa).each do |u|%>
-  <%= content_tag :button, create_nome_membro(u, empresa), class: 'list-group-item list-group-item-action' %>
-  <% end %>
+<%= simple_form_for  empresa, action: "add_refeicao", url: add_membro_empresas_path, remote: true, :method => :put  do |f|%>
+<div class="row">
+  <div class="col-12 ">
+    <div id="div_notice"></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-8 col-md-6 ">
+  <div class="form-group">
+          <h5>
+            <label for="recipient-name" class="control-label">Adicionar Membro</label>
+            </h5>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">@</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Email" name="email" aria-label="Username" aria-describedby="basic-addon1">
+                <%= f.hidden_field :id , name: "empresa_id"%>
+              </div>
+          </div>
+  </div>
+  <div class="col-sm-4 col-md-6 align-self-center">
+  <%= f.submit 'Adicionar', class: 'btn btn-primary card-link'%>
+  </div>
+</div>
+<br>
+          
+<%end%>
+<h5>Membros</h5>
+<div id="div_membors_list">
+<%= render 'membros_list', membros: membros, empresa: empresa%>
 </div>

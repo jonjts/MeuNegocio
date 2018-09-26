@@ -1,0 +1,5 @@
+<div class="list-group" id="membros_list">
+    <% membros.each do |u|%>
+    <%= content_tag :button, create_nome_membro(u, empresa), class: 'list-group-item list-group-item-action' %>
+    <% end %>
+</div>
