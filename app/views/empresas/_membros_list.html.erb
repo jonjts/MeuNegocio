@@ -1,5 +1,19 @@
 <div class="list-group" id="membros_list">
     <% membros.each do |u|%>
-    <%= content_tag :button, create_nome_membro(u, empresa), class: 'list-group-item list-group-item-action' %>
+        <%= content_tag :button,  class: 'list-group-item list-group-item-action flex-column align-items-start' do%>
+                <div class="mr-auto p-2">
+                    <%= create_nome_membro(u, empresa) %>
+                </div>
+                <div class="p2">
+                <div class="btn-group btn-group-sm">
+                    <% if !empresa.sou_admin(u) and u.id != current_user.id%>
+                        <%= link_to fa_icon("sign-out", text: 'Remover membro'), remove_membro_empresas_path(:email => u.email, :id => empresa.id), method: :delete, class: 'btn btn-outline-danger btn-xs', "data-confirm": 'Remover membro?', :remote => true  %>
+                    <% end %>
+                    <% if !empresa.sou_admin(u) and u.id != current_user.id%>
+                        <%= link_to fa_icon("unlock", text: 'Adicionar como adiministrador'), add_admin_empresas_path(:email => u.email, :id => empresa.id), method: :put, class: 'btn btn-outline-danger btn-xs', "data-confirm": 'Adicionar membro como administrador?', :remote => true  %>
+                    <% end %>
+                </div>
+            </div>           
+        <%end%>
     <% end %>
 </div>

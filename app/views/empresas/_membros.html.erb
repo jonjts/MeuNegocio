@@ -5,22 +5,22 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-8 col-md-6 ">
+  <div class="col-sm-12 col-md-8 ">
   <div class="form-group">
           <h5>
             <label for="recipient-name" class="control-label">Adicionar Membro</label>
             </h5>
             <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">@</span>
-                </div>
-                <input type="text" class="form-control" placeholder="Email" name="email" aria-label="Username" aria-describedby="basic-addon1">
-                <%= f.hidden_field :id , name: "empresa_id"%>
+            <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">@</span>
               </div>
+              <input type="text" class="form-control" placeholder="Email do usuário" aria-label="Email do usuário" aria-describedby="button-addon2" name="email">
+              <%= f.hidden_field :id , name:'id'%>
+              <div class="input-group-append">
+              <%= f.submit 'Adicionar', class: 'btn btn-outline-primary'%>
+              </div>
+            </div>
           </div>
-  </div>
-  <div class="col-sm-4 col-md-6 align-self-center">
-  <%= f.submit 'Adicionar', class: 'btn btn-primary card-link'%>
   </div>
 </div>
 <br>

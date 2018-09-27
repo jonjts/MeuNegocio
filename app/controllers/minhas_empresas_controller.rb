@@ -3,11 +3,12 @@ class MinhasEmpresasController < ApplicationController
 
   def destroy
     @minha_empresa = MinhaEmpresa.where(user_id: current_user.id, empresa_id: params[:id]).first
+    @minha_empresa.current_user = current_user
     if @minha_empresa.destroy
       flash["success"] = "Você saiu da empresa <b>" + @minha_empresa.empresa.nome + "</b>"
       cookies.encrypted[:empresa_selecionada] = nil
     else
-      flash["danger"] = @empresa.errors.full_messages.to_sentence
+      flash["danger"] = @minha_empresa.errors.full_messages.to_sentence
     end
     redirect_to minhas_empresas_path
   end
@@ -30,8 +31,10 @@ class MinhasEmpresasController < ApplicationController
     @minha_empresa = MinhaEmpresa.new(@permitted)
     @minha_empresa.empresa.criado_por = current_user
     @minha_empresa.empresa.current_user = current_user
+    @minha_empresa.current_user = current_user
     @minha_empresa.user = current_user
-    if @minha_empresa.save!
+    @minha_empresa.can_create_admin = true
+    if @minha_empresa.save
       flash[:success] = "Empresa adicionada com sucesso"
       redirect_to minhas_empresas_path
     else

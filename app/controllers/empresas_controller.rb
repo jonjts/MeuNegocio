@@ -1,17 +1,57 @@
 class EmpresasController < ApplicationController
-  #before_action :authorize!, except: [:new, :create, :show, :index]
+  before_action :i_can_see_it!, only: [:show, :edit]
+  before_action :authorize!, except: [:new, :create, :show, :index, :edit, :select]
 
   def add_membro
     @user = User.where(email: params[:email])
     if !@user.blank?
       @minhaEmpresa = MinhaEmpresa.new
       @minhaEmpresa.user = @user.first
-      @minhaEmpresa.empresa_id = params[:empresa_id]
+      @minhaEmpresa.empresa_id = params[:id]
       @minhaEmpresa.empresa.current_user = current_user
       if @minhaEmpresa.save
         @notice = {"success" => "<b>#{@user.first.identificacao}</b> adicionado como membro"}
       else
         @notice = {"danger" => "Não foi possível adicionar <b>#{@user.first.identificacao}</b><br>#{@minhaEmpresa.errors.full_messages.to_sentence}"}
+      end
+    else
+      @notice = {"danger" => "O usuário <b>#{params[:email]}</b> não foi encontrado"}
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def add_admin
+    @user = User.where(email: params[:email])
+    if !@user.blank?
+      @admin = Administrador.new
+      @admin.user = @user.first
+      @admin.empresa_id = params[:id]
+      @admin.current_user = current_user
+      if @admin.save
+        @notice = {"success" => "<b>#{@user.first.identificacao}</b> adicionado como administrador"}
+      else
+        @notice = {"danger" => "Não foi possível adicionar <b>#{@user.first.identificacao}</b><br>#{@admin.errors.full_messages.to_sentence}"}
+      end
+    else
+      @notice = {"danger" => "O usuário <b>#{params[:email]}</b> não foi encontrado"}
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def remove_membro
+    @user = User.where(email: params[:email])
+    if !@user.blank?
+      @user = @user.first
+      @minhaEmpresa = MinhaEmpresa.where(user_id: @user.id, empresa_id: params[:id]).first
+      @minhaEmpresa.current_user = current_user
+      if @minhaEmpresa.destroy
+        @notice = {"success" => "<b>#{@user.identificacao}</b> removido da empresa"}
+      else
+        @notice = {"danger" => "Não foi possível remover <b>#{@user.identificacao}</b><br>#{@minhaEmpresa.errors.full_messages.to_sentence}"}
       end
     else
       @notice = {"danger" => "O usuário <b>#{params[:email]}</b> não foi encontrado"}
@@ -67,6 +107,12 @@ class EmpresasController < ApplicationController
     set_empresa
     unless @empresa.sou_admin current_user
       redirect_to minhas_empresas_path, alert: "Você precisa ser administrador da empresa para continuar" and return
+    end
+  end
+
+  def i_can_see_it!
+    if !(current_user.empresas.include? Empresa.where(id: params[:id]).first)
+      redirect_to minhas_empresas_path and return
     end
   end
 end

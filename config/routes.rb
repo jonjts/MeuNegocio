@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   resources :clientes
   resources :empresas do
     put :select
+    put :add_admin, :on => :collection, :defaults => {:format => "js"}
     put :add_membro, :on => :collection, :defaults => {:format => "js"}
+    delete :remove_membro, :on => :collection, :defaults => {:format => "js"}
   end
   resources :administradores do
     delete :remover

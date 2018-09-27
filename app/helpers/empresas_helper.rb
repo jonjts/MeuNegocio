@@ -12,6 +12,6 @@ module EmpresasHelper
   end
 
   def membros(empresa)
-    @users = empresa.users.joins(:administradores).order("name, administradores.id")
+    @users = empresa.users.order(:name)
   end
 end

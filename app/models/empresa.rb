@@ -1,6 +1,6 @@
 class Empresa < ActiveRecord::Base
-  before_validation :check_admin?
-  before_destroy :check_admin?, prepend: true
+  before_validation :check_admin
+  before_destroy :check_admin, prepend: true
 
   attr_accessor :current_user
 
@@ -26,7 +26,7 @@ class Empresa < ActiveRecord::Base
 
   private
 
-  def check_admin?
+  def check_admin
     if !new_record? and !sou_admin(current_user)
       self.errors.add(:base, "Usuário não é adminstrador")
       throw :abort
