@@ -1,4 +1,0 @@
-MAIL_ADDRESS: 'smtp.sendgrid.net'
-SENDMAIL_USERNAME: 'app64693310@heroku.com'
-SENDMAIL_PASSWORD: 'hgsgavxj4545'
-MAIL_DOMAIN: 'heroku.com'
