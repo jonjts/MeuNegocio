@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180927170811) do
+ActiveRecord::Schema.define(version: 20180928122016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,13 +29,11 @@ ActiveRecord::Schema.define(version: 20180927170811) do
     t.string   "nome"
     t.string   "cpf"
     t.string   "rg"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "empresa_id",  null: false
     t.datetime "removido_em"
-    t.integer  "removido_por_id"
-    t.integer  "empresa_id",      null: false
     t.index ["empresa_id"], name: "index_clientes_on_empresa_id", using: :btree
-    t.index ["removido_por_id"], name: "index_clientes_on_removido_por_id", using: :btree
   end
 
   create_table "empresas", force: :cascade do |t|
@@ -102,7 +100,6 @@ ActiveRecord::Schema.define(version: 20180927170811) do
   add_foreign_key "administradores", "empresas"
   add_foreign_key "administradores", "users"
   add_foreign_key "clientes", "empresas"
-  add_foreign_key "clientes", "users", column: "removido_por_id"
   add_foreign_key "empresas", "users", column: "criado_por"
   add_foreign_key "enderecos", "clientes"
   add_foreign_key "minhas_empresas", "empresas"

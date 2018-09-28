@@ -1,6 +1,8 @@
 class Cliente < ApplicationRecord
   require "cpf_cnpj"
 
+  default_scope { where(removido_em: nil) }
+
   belongs_to :empresa
   has_many :telefones, dependent: :destroy, :inverse_of => :cliente
   has_many :enderecos, dependent: :destroy, :inverse_of => :cliente
@@ -11,6 +13,10 @@ class Cliente < ApplicationRecord
   validates :nome, presence: true
   validate :valid_cpf_rg
   validates :cpf, uniqueness: {scope: :user_id}, :allow_blank => true
+
+  def destroy
+    update_attribute(:removido_em, DateTime.now)
+  end
 
   private
 
