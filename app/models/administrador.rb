@@ -35,7 +35,7 @@ class Administrador < ActiveRecord::Base
   def check_last_admin?
     @qtdAdmins = Administrador.where(empresa_id: empresa.id).count
     if @qtdAdmins <= 1
-      self.errors.add(:base, "Não é possível remover adminstração pois você é o último administrador da empresa <b>#{empresa.nome}</b>")
+      self.errors.add(:base, "Não é possível remover adminstração pois você é o único administrador da empresa <b>#{empresa.nome}</b>")
       throw :abort
     end
     return true
