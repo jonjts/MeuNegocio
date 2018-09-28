@@ -1,6 +1,6 @@
 class ClientesController < ApplicationController
   def index
-    @clientes = current_user.clientes.
+    @clientes = empresa_selecionada.clientes.
       paginate(:page => params[:page], :per_page => 20).order(nome: :asc)
     respond_to do |format|
       format.html
@@ -14,7 +14,7 @@ class ClientesController < ApplicationController
 
   def create
     @cliente = Cliente.new(param_cliente)
-    @cliente.user = current_user
+    @cliente.empresa = empresa_selecionada
     if @cliente.save
       flash[:success] = "Cliente adicionado com sucesso"
       redirect_to clientes_path

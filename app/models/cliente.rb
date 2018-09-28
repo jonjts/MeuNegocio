@@ -1,7 +1,7 @@
 class Cliente < ApplicationRecord
   require "cpf_cnpj"
 
-  belongs_to :user
+  belongs_to :empresa
   has_many :telefones, dependent: :destroy, :inverse_of => :cliente
   has_many :enderecos, dependent: :destroy, :inverse_of => :cliente
 

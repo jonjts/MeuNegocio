@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
 
-  has_many :clientes
   has_many :minhas_empresas, dependent: :destroy, :foreign_key => "user_id"
   has_many :empresas, :through => :minhas_empresas
   has_many :administradores, dependent: :destroy, :foreign_key => "user_id"
