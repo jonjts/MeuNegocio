@@ -1,0 +1,37 @@
+<div id="servicos_table">
+   <table class="table table-striped" >
+      <thead>
+         <th scope="col"></th>
+         <th scope="col">Nome</th>
+         <th scope="col">Valor</th>
+      </thead>
+      <tbody>
+         <% servicos.each do |servico| %>
+         <tr>
+            <td>
+               <div class="btn-group btn-group-sm">
+                  <%= link_to fa_icon("pencil"), edit_servico_path(servico), class: "btn btn-outline-primary btn-xs", data: { toggle: "tooltip", placement: "top" },  title: 'Alterar' %>
+                  <%= link_to fa_icon("trash"), servico_path(servico), method: :delete, "data-confirm": 'Remover serviço?', class: "btn btn-outline-danger btn-xs", data: { toggle: "tooltip", placement: "top" },  title: 'Remover' %>
+               </div>
+            </td>
+            <td>
+            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="<%= servico.descricao%>">
+               <%= servico.nome %>
+            </span>
+               <%= content_tag :span, servico.situacao ? 'Ativo' : 'Inativo', 
+               class: servico.situacao ? 'badge badge-success' : 'badge badge-danger',
+               title: 'Situação', data: { toggle: "tooltip", placement: "right" } %>
+            </td>
+            <td>
+               <%= number_to_currency servico.valor_venda %>
+            </td>
+            
+         </tr>
+      
+         <% end %>
+      </tbody>
+   </table>
+   <div class="float-right">
+      <%= will_paginate servicos, renderer: BootstrapPagination::Rails%>
+   </div>
+</div>

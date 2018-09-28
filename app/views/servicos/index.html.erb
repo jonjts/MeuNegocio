@@ -1,0 +1,12 @@
+<div class="card">
+  <div class="card-body">
+    <h3 class="card-title">Serviços</h3>
+    <hr>
+<%= link_to( 'Novo', new_servico_path , class: "btn btn-outline-primary") %>
+<br>
+<br>
+<div id="div_servicos_table">
+  <%= render 'servicos_table', servicos: @servicos %>
+</div>
+  </div>
+</div>

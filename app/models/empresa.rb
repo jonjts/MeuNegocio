@@ -10,6 +10,7 @@ class Empresa < ActiveRecord::Base
   has_many :administradores, dependent: :destroy, :foreign_key => "empresa_id", :inverse_of => :empresa
   has_many :clientes
   has_many :produtos
+  has_many :servicos
 
   validates :nome, presence: true
   validates :criado_por, presence: true

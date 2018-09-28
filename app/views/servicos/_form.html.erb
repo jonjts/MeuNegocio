@@ -1,0 +1,33 @@
+<%= simple_form_for  @servico, defaults: {label_html: {class: 'form-title'}}, html: {class: 'form-vertical'} do |f| %>
+<%= f.error_notification %>
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-lg-6">
+      <%= f.input :nome, as: :string, input_html: {class: 'form-control' }%>
+    </div>
+    <div class="col-md-12 col-sm-12 col-lg-6">
+      <%= f.input :situacao, 
+            :as => :select, 
+            :collection => [['Ativo', true],['Inativo', false]], 
+            :include_blank => false %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-lg-6">
+      <%= f.input :valor_venda, as: :string, input_html: {class: 'form-control monetario',value: @servico.currency_valor_venda, name: 'servico[currency_valor_venda]'} %>
+    </div>
+    <div class="col-md-12 col-sm-12 col-lg-6">
+      <%= f.input :descricao, as: :text, input_html: {class: 'form-control'} %>
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-md-2">
+      <ul class="list-unstyled">
+        <li>
+          <%= f.submit 'Salvar', class: 'btn btn-outline-primary card-link'%>
+          <%= link_to 'Voltar', :back, class: 'card-link' %>
+        </li>
+      </ul>
+    </div>
+  </div>
+<% end %>

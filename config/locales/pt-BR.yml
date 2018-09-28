@@ -24,9 +24,10 @@ pt-BR:
     page_gap: "&hellip;"
   activerecord:
     models:
-      user: 'Usuário'
+      user: Usuário
       cliente: Cliente
       produto: Produto
+      servico: Serviço
     attributes:
       user:
         password: senha

@@ -1,15 +1,13 @@
-class Produto < ApplicationRecord
+class Servico < ApplicationRecord
   default_scope { where(removido_em: nil) }
 
   attr_accessor :currency_valor_venda
-  attr_accessor :currency_valor_compra
 
   belongs_to :empresa
 
-  validates :nome, presence: true
   validates :empresa, presence: true
-  validates :valor_venda, :numericality => {greater_than: 0}, presence: true
-  validates :quantidade, :numericality => {greater_tahn: 0}, presence: true
+  validates :nome, presence: true
+  validates :valor_venda, presence: true
   validates :situacao, inclusion: {in: [true, false]}
 
   def currency_valor_venda
@@ -22,19 +20,6 @@ class Produto < ApplicationRecord
   def currency_valor_venda=(str)
     unless str.blank?
       self.valor_venda = BigDecimal.new(str.match(/(\d.+)/)[1].gsub(",", "."))
-    end
-  end
-
-  def currency_valor_compra
-    unless valor_compra.blank?
-      return helper.number_to_currency(valor_compra, :unit => "").delete(" ")
-    end
-    return ""
-  end
-
-  def currency_valor_compra=(str)
-    unless str.blank?
-      self.valor_compra = BigDecimal.new(str.match(/(\d.+)/)[1].gsub(",", "."))
     end
   end
 
