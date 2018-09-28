@@ -21,9 +21,7 @@
 
 
 document.addEventListener("turbolinks:load", function() {
-  $('[data-toggle="tooltip"]').tooltip();
-  
-	$('.cpf').mask('000.000.000-00', {reverse: true});
+  //$('[data-toggle="tooltip"]').tooltip();
 
 	 var SPMaskBehavior = function (val) {
     return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
@@ -34,9 +32,18 @@ document.addEventListener("turbolinks:load", function() {
       }
   };
 
+  $(".cpf").focus(function(){$(this).attr("inputmode","numeric")});
+  $('.cpf').mask('000.000.000-00', {reverse: true});
+    
+  $(".monetario").focus(function(){$(this).attr("inputmode","numeric")});
   $('.monetario').mask('000.000.000.000.000,00', {reverse: true});
-  $("input[type=text].currency").setMask('decimal');
+
+  $(".telefone").focus(function(){$(this).attr("inputmode","numeric")});
   $('.telefone').mask(SPMaskBehavior, spOptions);
+
+  $(".cep").focus(function(){$(this).attr("inputmode","numeric")});
   $('.cep').mask('00000-000');
+
+  $(".numero").focus(function(){$(this).attr("inputmode","numeric")});
   $('.numero').mask('00000');
 })
