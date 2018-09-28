@@ -21,7 +21,7 @@
 
 
 document.addEventListener("turbolinks:load", function() {
-  //$('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="tooltip"]').tooltip();
 
 	 var SPMaskBehavior = function (val) {
     return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
