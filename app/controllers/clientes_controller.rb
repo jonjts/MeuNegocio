@@ -32,7 +32,7 @@ class ClientesController < ApplicationController
   end
 
   def edit
-    @cliente = Cliente.find(params[:id])
+    set_cliente
   end
 
   def update

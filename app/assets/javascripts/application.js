@@ -19,7 +19,10 @@
 //= require cocoon
 //= require jquery.mask
 
+
 document.addEventListener("turbolinks:load", function() {
+  $('[data-toggle="tooltip"]').tooltip();
+  
 	$('.cpf').mask('000.000.000-00', {reverse: true});
 
 	 var SPMaskBehavior = function (val) {
@@ -31,6 +34,8 @@ document.addEventListener("turbolinks:load", function() {
       }
   };
 
+  $('.monetario').mask('000.000.000.000.000,00', {reverse: true});
+  $("input[type=text].currency").setMask('decimal');
   $('.telefone').mask(SPMaskBehavior, spOptions);
   $('.cep').mask('00000-000');
   $('.numero').mask('00000');

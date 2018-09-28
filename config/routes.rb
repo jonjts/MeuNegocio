@@ -9,8 +9,8 @@ Rails.application.routes.draw do
                passwords: "users/passwords",
              }, :path_names => {:sign_in => "login", :sign_out => "logout"}
 
+  resources :produtos
   resources :minhas_empresas
-
   resources :clientes
   resources :empresas do
     put :select

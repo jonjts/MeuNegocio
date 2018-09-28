@@ -1,0 +1,44 @@
+<div id="clientes_table">
+   <table class="table table-striped" >
+      <thead>
+         <th scope="col"></th>
+         <th scope="col">Nome</th>
+         <th scope="col">Valor compra</th>
+         <th scope="col">Valor venda</th>
+      </thead>
+      <tbody>
+         <% produtos.each do |produto| %>
+         <tr>
+            <td>
+               <div class="btn-group btn-group-sm">
+                  <%= link_to fa_icon("pencil"), edit_produto_path(produto), class: "btn btn-outline-primary btn-xs", data: { toggle: "tooltip", placement: "top" },  title: 'Alterar' %>
+                  <%= link_to fa_icon("trash"), produto_path(produto), method: :delete, "data-confirm": 'Remover produto?', class: "btn btn-outline-danger btn-xs", data: { toggle: "tooltip", placement: "top" },  title: 'Remover' %>
+               </div>
+            </td>
+            <td>
+            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="<%= produto.descricao%>">
+               <%= produto.nome %>
+            </span>
+               <%= content_tag :span, produto.quantidade, 
+               class: produto.quantidade > 0 ? 'badge badge-success' : 'badge badge-danger',
+               title: 'Quantidade', data: { toggle: "tooltip", placement: "right" } %>
+               <%= content_tag :span, produto.situacao ? 'Ativo' : 'Inativo', 
+               class: produto.situacao ? 'badge badge-success' : 'badge badge-danger',
+               title: 'Situação', data: { toggle: "tooltip", placement: "right" } %>
+            </td>
+            <td>
+               <%= number_to_currency produto.valor_compra %>
+            </td>
+            <td>
+               <%= number_to_currency produto.valor_venda %>
+            </td>
+            
+         </tr>
+      
+         <% end %>
+      </tbody>
+   </table>
+   <div class="float-right">
+      <%= will_paginate produtos, renderer: BootstrapPagination::Rails%>
+   </div>
+</div>
