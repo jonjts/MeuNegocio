@@ -1,0 +1,29 @@
+<div id="produtos_table">
+   <table class="table table-striped" >
+      <thead>
+         <th scope="col"></th>
+         <th scope="col">Cliente</th>
+      </thead>
+      <tbody>
+         <% vendas.each do |venda| %>
+         <tr>
+            <td>
+               <div class="btn-group btn-group-sm">
+                  <%= link_to fa_icon("pencil"), edit_venda_path(venda), class: "btn btn-outline-primary btn-xs", data: { toggle: "tooltip", placement: "top" },  title: 'Alterar' %>
+               </div>
+            </td>
+            <td>
+            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="<%= venda.descricao%>">
+               <%= venda.cliente.nome %>
+            </span>
+            </td>
+            
+         </tr>
+      
+         <% end %>
+      </tbody>
+   </table>
+   <div class="float-right">
+      <%= will_paginate vendas, renderer: BootstrapPagination::Rails%>
+   </div>
+</div>

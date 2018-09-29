@@ -51,4 +51,8 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular "User", "Users"
   inflect.irregular "minha_empresa", "minhas_empresas"
   inflect.irregular "minhaEmpresa", "minhasEmpresas"
+
+  inflect.irregular "pagamento_venda", "pagamentos_vendas"
+  inflect.irregular "produto_venda", "produtos_vendas"
+  inflect.irregular "servico_venda", "servicos_vendas"
 end

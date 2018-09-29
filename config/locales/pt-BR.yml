@@ -28,6 +28,10 @@ pt-BR:
       cliente: Cliente
       produto: Produto
       servico: Serviço
+      pagamento_venda: Pagamento da Venda
+      produto_venda: Produto da Venda
+      servico_venda: Serviço da Venda
+      venda: Venda
     attributes:
       user:
         password: senha

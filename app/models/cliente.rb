@@ -6,6 +6,7 @@ class Cliente < ApplicationRecord
   belongs_to :empresa
   has_many :telefones, dependent: :destroy, :inverse_of => :cliente
   has_many :enderecos, dependent: :destroy, :inverse_of => :cliente
+  has_many :vendas, :inverse_of => :cliente
 
   accepts_nested_attributes_for :telefones, :allow_destroy => true
   accepts_nested_attributes_for :enderecos, :allow_destroy => true

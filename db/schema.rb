@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180928211147) do
+ActiveRecord::Schema.define(version: 20180929000638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,17 @@ ActiveRecord::Schema.define(version: 20180928211147) do
     t.index ["user_id"], name: "index_minhas_empresas_on_user_id", using: :btree
   end
 
+  create_table "pagamentos_vendas", force: :cascade do |t|
+    t.integer  "venda_id",                                null: false
+    t.integer  "numero_parcela",                          null: false
+    t.decimal  "valor",          precision: 15, scale: 2, null: false
+    t.date     "data_pagamento",                          null: false
+    t.datetime "pago_em"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.index ["venda_id"], name: "index_pagamentos_vendas_on_venda_id", using: :btree
+  end
+
   create_table "produtos", force: :cascade do |t|
     t.integer  "empresa_id",                                            null: false
     t.string   "nome",                                                  null: false
@@ -81,6 +92,16 @@ ActiveRecord::Schema.define(version: 20180928211147) do
     t.index ["empresa_id"], name: "index_produtos_on_empresa_id", using: :btree
   end
 
+  create_table "produtos_vendas", force: :cascade do |t|
+    t.integer  "venda_id",   null: false
+    t.integer  "produto_id", null: false
+    t.integer  "quantidade", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["produto_id"], name: "index_produtos_vendas_on_produto_id", using: :btree
+    t.index ["venda_id"], name: "index_produtos_vendas_on_venda_id", using: :btree
+  end
+
   create_table "servicos", force: :cascade do |t|
     t.integer  "empresa_id",                                          null: false
     t.string   "nome",                                                null: false
@@ -91,6 +112,15 @@ ActiveRecord::Schema.define(version: 20180928211147) do
     t.datetime "created_at",                                          null: false
     t.datetime "updated_at",                                          null: false
     t.index ["empresa_id"], name: "index_servicos_on_empresa_id", using: :btree
+  end
+
+  create_table "servicos_vendas", force: :cascade do |t|
+    t.integer  "venda_id",   null: false
+    t.integer  "servico_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["servico_id"], name: "index_servicos_vendas_on_servico_id", using: :btree
+    t.index ["venda_id"], name: "index_servicos_vendas_on_venda_id", using: :btree
   end
 
   create_table "telefones", force: :cascade do |t|
@@ -123,6 +153,17 @@ ActiveRecord::Schema.define(version: 20180928211147) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "vendas", force: :cascade do |t|
+    t.integer  "cliente_id",                                              null: false
+    t.decimal  "taxa_adicional", precision: 15, scale: 2,                 null: false
+    t.text     "descricao"
+    t.decimal  "desconto",       precision: 15, scale: 2, default: "0.0", null: false
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+    t.decimal  "entrada",        precision: 15, scale: 2, default: "0.0", null: false
+    t.index ["cliente_id"], name: "index_vendas_on_cliente_id", using: :btree
+  end
+
   add_foreign_key "administradores", "empresas"
   add_foreign_key "administradores", "users"
   add_foreign_key "clientes", "empresas"
@@ -130,7 +171,13 @@ ActiveRecord::Schema.define(version: 20180928211147) do
   add_foreign_key "enderecos", "clientes"
   add_foreign_key "minhas_empresas", "empresas"
   add_foreign_key "minhas_empresas", "users"
+  add_foreign_key "pagamentos_vendas", "vendas"
   add_foreign_key "produtos", "empresas"
+  add_foreign_key "produtos_vendas", "produtos"
+  add_foreign_key "produtos_vendas", "vendas"
   add_foreign_key "servicos", "empresas"
+  add_foreign_key "servicos_vendas", "servicos"
+  add_foreign_key "servicos_vendas", "vendas"
   add_foreign_key "telefones", "clientes"
+  add_foreign_key "vendas", "clientes"
 end

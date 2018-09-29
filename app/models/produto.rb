@@ -5,6 +5,7 @@ class Produto < ApplicationRecord
   attr_accessor :currency_valor_compra
 
   belongs_to :empresa
+  has_many :produtos_vendas
 
   validates :nome, presence: true
   validates :empresa, presence: true

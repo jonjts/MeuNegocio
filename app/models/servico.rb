@@ -5,6 +5,8 @@ class Servico < ApplicationRecord
 
   belongs_to :empresa
 
+  has_many :servicos_vendas
+
   validates :empresa, presence: true
   validates :nome, presence: true
   validates :valor_venda, presence: true
