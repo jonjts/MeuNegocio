@@ -10,8 +10,8 @@
          <tr>
             <td>
                <div class="btn-group btn-group-sm">
-                  <%= link_to fa_icon("pencil"), edit_servico_path(servico), class: "btn btn-outline-primary btn-xs", data: { toggle: "tooltip", placement: "top" },  title: 'Alterar' %>
-                  <%= link_to fa_icon("trash"), servico_path(servico), method: :delete, "data-confirm": 'Remover serviço?', class: "btn btn-outline-danger btn-xs", data: { toggle: "tooltip", placement: "top" },  title: 'Remover' %>
+                  <%= link_to content_tag(:i, 'edit', class: 'material-icons'), edit_servico_path(servico), class: "btn btn-outline-primary btn-xs", data: { toggle: "tooltip", placement: "top" },  title: 'Alterar' %>
+                  <%= link_to content_tag(:i, 'delete', class: 'material-icons'), servico_path(servico), method: :delete, "data-confirm": 'Remover serviço?', class: "btn btn-outline-danger btn-xs", data: { toggle: "tooltip", placement: "top" },  title: 'Remover' %>
                </div>
             </td>
             <td>

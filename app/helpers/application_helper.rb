@@ -17,4 +17,8 @@ module ApplicationHelper
   def empresas_para_selecionar
     current_user.empresas.where.not(id: empresa_selecionada().id).order(:nome)
   end
+
+  def active_class(link_path)
+    request.path.start_with?(link_path) ? "active" : ""
+  end
 end

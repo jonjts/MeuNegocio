@@ -1,8 +1,12 @@
+   <div class="page-header row no-gutters py-4">
+      <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+         <span class="text-uppercase page-subtitle"><%=  @cliente.nome%></span>
+         <h3 class="page-title">Alterar Cliente</h3>
+      </div>
+   </div>
+
 <div class="card">
   <div class="card-body">
-    <h3 class="card-title">Alterar Cliente</h3>
-    <%= content_tag :h6, @cliente.nome, class: 'card-subtitle mb-2 text-muted' %>
-    <hr>
     <%= render 'form' %>
   </div>
 </div>

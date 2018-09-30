@@ -10,7 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require jquery3
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
@@ -20,7 +20,9 @@
 //= require jquery.mask
 
 
-document.addEventListener("turbolinks:load", function() {
+
+document.addEventListener("turbolinks:reload", function() {
+
   $('[data-toggle="tooltip"]').tooltip();
 
 	 var SPMaskBehavior = function (val) {

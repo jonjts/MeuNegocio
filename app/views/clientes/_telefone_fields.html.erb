@@ -5,7 +5,7 @@
         <div class="col-md-3 col-sm-3 col-lg-3">
           <ul class="form-group list-unstyled">
             <li>
-              <%= f.text_field :numero, class: 'form-control telefone', :placeholder => 'Número' %>
+              <%= f.input :numero,as: :string, input_html: {class: 'form-control telefone', :placeholder => 'Número'}%>
             </li>
           </ul>
         </div>
@@ -21,3 +21,20 @@
     <br>
   </div>
 <% end %>
+
+<script>
+document.addEventListener("turbolinks:load", function() {
+  var SPMaskBehavior = function (val) {
+    return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+  },
+  spOptions = {
+    onKeyPress: function(val, e, field, options) {
+        field.mask(SPMaskBehavior.apply({}, arguments), options);
+      }
+  };
+
+  
+  $(".telefone").focus(function(){$(this).attr("inputmode","numeric")});
+  $('.telefone').mask(SPMaskBehavior, spOptions);
+})
+</script>
