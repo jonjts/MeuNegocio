@@ -1,0 +1,64 @@
+<div class="header py-4">
+   <div class="container">
+      <div class="d-flex">
+         <a class="header-brand" href="<%= root_path%>">
+         Meu Negócio
+         </a>
+         <div class="d-flex order-lg-2 ml-auto">
+
+         <div class="dropdown">
+               <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
+               <span class="avatar avatar"><%= fa_icon('briefcase') %></span>
+               <span class="ml-2 d-none d-lg-block">
+               <span class="text-default"><%= empresa_selecionada.nome%></span>
+               <% if empresa_selecionada.sou_admin(current_user) %>
+               <span class="tag tag-rounded" title='Você é administrador dessa empresa' data-toggle="tooltip" data-placement="bottom">Admin</span>
+                    
+               <% end %>
+               </span>
+               </a>
+               <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                    <h2 class="dropdown-header">Minhas Empresas</h2>
+                  <ul class="list-group list-group-flush">
+                            <% empresas_para_selecionar.each do |e|%>
+                              <%= link_to sou_admin(e), empresa_select_path(e), class:"dropdown-item", method: :put %> 
+                            <%end%>
+                            <% if empresas_para_selecionar.blank?%>
+                            <%= content_tag :div, class: 'd-flex justify-content-center' do%>
+                            <%= content_tag :p, 'Não exitem mais empresas para exibir', class: 'text-muted text-center', style: 'font-size:12px'%>
+                            <% end %>
+                            <% end %>
+                            <div class="dropdown-divider"></div>
+                            <div class="d-flex justify-content-center">
+                              <%= link_to 'ver mais', minhas_empresas_path, class:"card-link text-muted", style: 'font-size:12px;' %> 
+                            </div>
+                          </ul>
+                  </a>
+               </div>
+            </div>
+         
+            <div class="dropdown">
+               <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
+               <span class="avatar avatar-placeholder"></span>
+               <span class="ml-2 d-none d-lg-block">
+               <span class="text-default"><%= current_user.name%></span>
+               <small class="text-muted d-block mt-1"><%= current_user.email%></small>
+               </span>
+               </a>
+               <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                  <a class="dropdown-item" href="<%= edit_user_registration_path %>">
+                  <i class="dropdown-icon fe fe-user"></i> Alterar conta
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" data-method="delete" href="<%= destroy_user_session_path %>">
+                  <i class="dropdown-icon fe fe-log-out"></i> Sair
+                  </a>
+               </div>
+            </div>
+         </div>
+         <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
+         <span class="header-toggler-icon"></span>
+         </a>
+      </div>
+   </div>
+</div>

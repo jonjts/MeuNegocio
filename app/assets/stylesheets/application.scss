@@ -12,7 +12,10 @@
  *
  */
 
+ @import "tabler/variables";
  @import "bootstrap";
+ @import "tabler";
+ @import "tabler.plugins";
  @import "font-awesome";
  @import "login";
 
@@ -22,4 +25,8 @@ body{
 
  my-nav{
     background-color: #FFFFFF !important;
+ }
+
+.login{
+     width: 330px !important;
  }

@@ -1,11 +1,12 @@
 <%= simple_form_for  empresa, action: "add_refeicao", url: add_membro_empresas_path, remote: true, :method => :put  do |f|%>
 <div class="row">
+<div class="row">
   <div class="col-12 ">
     <div id="div_notice"></div>
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-12 col-md-8 ">
+  <div class="col-sm-12 col-md-12 ">
   <div class="form-group">
           <h5>
             <label for="recipient-name" class="control-label">Adicionar Membro</label>
@@ -22,11 +23,14 @@
             </div>
           </div>
   </div>
-</div>
-<br>
-          
-<%end%>
+  <div class="col-sm-12 col-md-12 ">
 <h5>Membros</h5>
 <div id="div_membors_list">
 <%= render 'membros_list', membros: membros, empresa: empresa%>
 </div>
+</div>
+</div>
+<br>
+<div>
+          
+<%end%>

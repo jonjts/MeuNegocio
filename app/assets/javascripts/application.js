@@ -18,6 +18,11 @@
 //= require bootstrap
 //= require cocoon
 //= require jquery.mask
+// = require tabler/tabler
+// = require tabler/vendors/bootstrap.bundle.min
+// = require tabler/vendors/circle-progress.min
+// = require tabler/vendors/jquery.sparkline.min
+// = require tabler/core
 
 
 document.addEventListener("turbolinks:load", function() {

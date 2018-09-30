@@ -16,14 +16,13 @@
   <header>
       <div id="header-wrap">
         <% if user_signed_in? %>
-          <%= render 'layouts/user_navbar'%>
+      <%= render 'layouts/navbar'%>
+      <%= render 'layouts/navbar_navegation'%>    
         <%end%>
       </div>
     </header>
     <div class="container">
       <%= render 'layouts/messages' %>
-      <br>
-      <div class="panel panel-default">
         <div id="content-fluid" class="panel-body">
           <%= yield %>
         </div>

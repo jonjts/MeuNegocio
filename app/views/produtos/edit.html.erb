@@ -1,8 +1,10 @@
+<div class="page-header">
+  <h1 class="page-title">Alterar produto 
+		<small><%= @produto.nome%></small>
+  </h1>
+</div>
 <div class="card">
   <div class="card-body">
-    <h3 class="card-title">Alterar Produto</h3>
-    <%= content_tag :h6, @produto.nome, class: 'card-subtitle mb-2 text-muted' %>
-    <hr>
     <%= render 'form' %>
   </div>
 </div>
