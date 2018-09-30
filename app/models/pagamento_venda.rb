@@ -1,4 +1,4 @@
-class PagamentoVenda < ApplicattionRecord
+class PagamentoVenda < ApplicationRecord
   belongs_to :venda
 
   validates :numero_parcela, :numericality => {greater_tahn: 0}, presence: true
