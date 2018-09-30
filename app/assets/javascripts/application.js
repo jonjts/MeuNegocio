@@ -15,7 +15,6 @@
 //= require turbolinks
 //= require_tree .
 //= require popper
-//= require bootstrap
 //= require cocoon
 //= require jquery.mask
 // = require tabler/tabler
@@ -26,6 +25,7 @@
 
 
 document.addEventListener("turbolinks:load", function() {
+  $('.dropdown-toggle').dropdown();
   $('[data-toggle="tooltip"]').tooltip();
 
 	 var SPMaskBehavior = function (val) {

@@ -2,56 +2,56 @@
   <div class="control-group nested-fields">
     <div class="controls">
       <div class="row">
-        <div class="col-md-2 col-sm-2 col-lg-2">
+        <div class="col-md-4 col-sm-12 col-lg-4">
           <ul class="form-group list-unstyled">
             <li>
-              <%= f.text_field :cep ,class: 'form-control cep', :placeholder => 'CEP'%>
+              <%= f.input :cep ,input_html: {class: 'form-control cep' },  :placeholder => 'CEP'%>
             </li>
           </ul>
         </div>
-        <div class="col-md-2 col-sm-2 col-lg-3">
+        <div class="col-md-4 col-sm-12 col-lg-4">
           <ul class="form-group list-unstyled">
             <li>
-              <%= f.text_field :cidade, class: 'form-control', :placeholder => 'Cidade' %>
+              <%= f.input :cidade, class: 'form-control', :placeholder => 'Cidade' %>
             </li>
           </ul>
         </div>
-        <div class="col-md-10 col-sm-10 col-lg-3">
+        <div class="col-md-4 col-sm-12 col-lg-4">
           <ul class="form-group list-unstyled">
             <li>
-              <%= f.text_field :bairro, class: 'form-control', :placeholder => 'Bairro' %>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-10 col-sm-10 col-lg-10">
-          <ul class="form-group list-unstyled">
-            <li>
-              <%= f.text_field :rua ,class: 'form-control', :placeholder => 'Rua'%>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-2 col-sm-2 col-lg-2">
-          <ul class="form-group list-unstyled">
-            <li>
-              <%= f.text_field :numero, class: 'form-control numero', :placeholder => 'Número', as: :integer %>
+              <%= f.input :bairro, class: 'form-control', :placeholder => 'Bairro' %>
             </li>
           </ul>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6 col-sm-6 col-lg-6">
+        <div class="col-md-10 col-sm-12 col-lg-10">
           <ul class="form-group list-unstyled">
             <li>
-              <%= f.text_area :complemento ,class: 'form-control', :placeholder => 'Complemento'%>
+              <%= f.input :rua ,class: 'form-control', :placeholder => 'Rua'%>
             </li>
           </ul>
         </div>
-        <div class="col-md-6 col-sm-6 col-lg-6">
+        <div class="col-md-2 col-sm-12 col-lg-2">
           <ul class="form-group list-unstyled">
             <li>
-              <%= link_to_remove_association fa_icon("trash"), f, class: 'btn btn-danger' %>
+              <%= f.input :numero,label: 'Número' ,class: 'form-control numero', :placeholder => 'Número', as: :integer %>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-lg-12">
+          <ul class="form-group list-unstyled">
+            <li>
+              <%= f.input :complemento ,class: 'form-control', :placeholder => 'Complemento'%>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-12 col-sm-12 col-lg-12">
+          <ul class="form-group list-unstyled">
+            <li>
+              <%= link_to_remove_association fa_icon("trash", text: 'Remover'), f, class: 'btn btn-outline-danger' %>
             </li>
           </ul>
         </div>

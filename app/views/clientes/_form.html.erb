@@ -1,99 +1,114 @@
 <%= simple_form_for  @cliente, defaults: {label_html: {class: 'form-title form'}}, html: {class: 'form-vertical'} do |f| %>
-<%= f.error_notification %>
 <div class="row">
-    <div class="col-md-12 col-sm-12 col-lg-3">
+<div class="col-md-12 col-sm-12 col-lg-12">
+
+   <div class="d-flex bd-highlight">
+      <div class="p-2 flex-grow-1 bd-highlight">
+         <div class="page-header">
+            <h1 class="page-title"><%= @cliente.new_record? ? 'Novo Cliente' : 'Alterar Cliente' %>
+               <%unless @cliente.new_record?%>
+               <small><%= @cliente.nome%></small>
+               <% end %>
+            </h1>
+         </div>
+      </div>
+      <div class="p-2 bd-highlight">
+         <div class="page-header">
+            <h1 class="page-title">
+               <%= f.submit 'Salvar', class: 'btn btn-success btn-lg'%>
+               <%unless @cliente.new_record?%>
+               <%= link_to 'Remover', cliente_path(@cliente), method: :delete, "data-confirm": 'Remover cliente?', class: "btn btn-danger btn-lg", data: { toggle: "tooltip", placement: "top" },  title: 'Remover' %>
+               <% end %>
+               <%= link_to 'Voltar', :back, class: 'card-link' %>
+            </h1>
+         </div>
+      </div>
+   </div>
+   </div>
+</div>
+
+<div class="row">
+   <div class="col-md-12 col-sm-12 col-lg-12">
       <ul class="form-group list-unstyled">
-        <li>
-          <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Básico</a>
-            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Telefones</a>
-            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Endereços</a>
-          </div>
-        </li>
+         <li>
+            <div class="card">
+               <div class="card-header">
+                  <h3 class="card-title">Dados Básicos</h3>
+               </div>
+               <div class="card-body">
+                  <div class="row">
+                     <div class="col-md-12 col-sm-12 col-lg-6">
+                        <ul class="form-group list-unstyled">
+                           <li>
+                              <%= f.input :nome, as: :string,input_html: {class: 'form-control' }%>
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="col-md-12 col-sm-12 col-lg-3">
+                        <ul class="form-group list-unstyled">
+                           <li>
+                              <%= f.input :rg, as: :integer,input_html: {class: 'form-control rg' }%>
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="col-md-12 col-sm-12 col-lg-3">
+                        <ul class="form-group list-unstyled">
+                           <li>
+                              <%= f.input :cpf, as: :string, input_html: {class: 'form-control cpf' }%>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+         </li>
       </ul>
-    </div>
-    <div class="col-md-12 col-sm-12 col-lg-9">
-      <ul class="form-group list-unstyled">
-        <li>
-          <div class="tab-content" id="v-pills-tabContent">
-            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-              <div class="row">
-                <div class="col-md-12 col-sm-12 col-lg-6">
-                  <ul class="form-group list-unstyled">
-                    <li>
-                      <%= f.input :nome, as: :string,input_html: {class: 'form-control' }%>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-md-12 col-sm-12 col-lg-3">
-                  <ul class="form-group list-unstyled">
-                    <li>
-                      <%= f.input :rg, as: :integer,input_html: {class: 'form-control rg' }%>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-md-12 col-sm-12 col-lg-3">
-                  <ul class="form-group list-unstyled">
-                    <li>
-                      <%= f.input :cpf, as: :string, input_html: {class: 'form-control cpf' }%>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-              <div id= 'telefones_container'>
-                <div class="page-header">
-                  <h4>
-                    Telefones
-                    <%= link_to_add_association fa_icon("plus", text: 'Adicionar telefone'), f, :telefones, 'data-association-insertion-node' => "#telefones_container ol", 'data-association-insertion-method' => "append",:wrap_object => Telefone.new, class: 'btn btn-outline-primary' %>
-                  </h4>
-                </div>
-                <br/>
-                <ol>
-                  <%= f.fields_for :telefones do |telefone| %>
-                    <%= render 'telefone_fields', f: telefone %>
-                  <% end %>
-                </ol>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-              <div id= 'enderecos_container'>
-                <div class="page-header">
-                  <h4>
-                    Endereços
-                    <%= link_to_add_association fa_icon("plus", text: 'Adicionar endereco'), f, :enderecos, 'data-association-insertion-node' => "#enderecos_container ol", 'data-association-insertion-method' => "append", class: 'btn btn-outline-primary' %>
-                  </h4>
-                </div>
-                <br/>
-                <ol>
-                  <%= f.fields_for :enderecos do |endereco| %>
-                    <%= render 'endereco_fields', f: endereco %>
-                  <% end %>
-                </ol>
-              </div>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-    
-  </div>
-
-
-  
-
-
-
-  <br/>
-  <div class="row">
-    <div class="col-md-12">
-      <ul class="list-unstyled">
-        <li>
-          <%= f.submit 'Salvar', class: 'btn btn-outline-primary card-link'%>
-          <%= link_to 'Voltar', :back, class: 'card-link' %>
-        </li>
-      </ul>
-    </div>
-  </div>
+      </div>
+      <div class="col-md-4 col-sm-12 col-lg-4">
+         <ul class="form-group list-unstyled">
+            <li>
+               <div class="card">
+                  <div class="card-header">
+                     <h3 class="card-title">Telefones</h3>
+                     <div class="card-options">
+                        <%= link_to_add_association fa_icon("plus", text: 'Adicionar telefone'), f, :telefones, 'data-association-insertion-node' => "#telefones_container ol", 'data-association-insertion-method' => "append", class: 'btn btn-outline-primary btn-sm' %>
+                     </div>
+                  </div>
+                  <div class="card-body">
+                     <div id= 'telefones_container'>
+                        <ol>
+                           <%= f.fields_for :telefones do |telefone| %>
+                           <%= render 'telefone_fields', f: telefone %>
+                           <% end %>
+                        </ol>
+                     </div>
+                  </div>
+               </div>
+            </li>
+         </ul>
+      </div>
+      <div class="col-md-8 col-sm-12 col-lg-8">
+         <ul class="form-group list-unstyled">
+            <li>
+               <div class="card">
+                  <div class="card-header">
+                     <h3 class="card-title">Endereços</h3>
+                     <div class="card-options">
+                        <%= link_to_add_association fa_icon("plus", text: 'Adicionar endereco'), f, :enderecos, 'data-association-insertion-node' => "#enderecos_container ol", 'data-association-insertion-method' => "append", class: 'btn btn-outline-primary btn-sm' %>
+                     </div>
+                  </div>
+                  <div class="card-body">
+                     <div id= 'enderecos_container'>
+                        <ol>
+                           <%= f.fields_for :enderecos do |endereco| %>
+                           <%= render 'endereco_fields', f: endereco %>
+                           <% end %>
+                        </ol>
+                     </div>
+                  </div>
+               </div>
+            </li>
+         </ul>
+      </div>
+   </div>
+</div>
 <% end %>

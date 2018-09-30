@@ -15,9 +15,8 @@
  @import "tabler/variables";
  @import "bootstrap";
  @import "tabler";
- @import "tabler.plugins";
+ @import "tabler/plugins/charts-c3/plugin.scss";
  @import "font-awesome";
- @import "login";
 
 body{
     background-color: #F5F6F8;
