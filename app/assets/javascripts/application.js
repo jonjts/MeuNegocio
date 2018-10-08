@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 //= require popper
 //= require cocoon
@@ -24,7 +23,7 @@
 // = require tabler/core
 
 
-document.addEventListener("turbolinks:load", function() {
+$(function() {
   $('.dropdown-toggle').dropdown();
   $('[data-toggle="tooltip"]').tooltip();
 
@@ -51,4 +50,4 @@ document.addEventListener("turbolinks:load", function() {
 
   $(".numero").focus(function(){$(this).attr("inputmode","numeric")});
   $('.numero').mask('00000');
-})
+});

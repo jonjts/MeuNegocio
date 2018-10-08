@@ -9,7 +9,10 @@
          <% clientes.each do |cliente| %>
          <tr>
             <td>
-            <%= link_to content_tag(:i,'' ,class: 'fe fe-edit'), edit_cliente_path(cliente), class: "icon", data: { toggle: "tooltip", placement: "top" },  title: 'Alterar' %>
+                <div class="btn-group btn-group-sm">
+                  <%= link_to fa_icon("pencil"), edit_cliente_path(cliente), class: "btn btn-outline-primary btn-xs", data: { toggle: "tooltip", placement: "top" },  title: 'Alterar' %>
+                  <%= link_to fa_icon("trash"), cliente_path(cliente), method: :delete, "data-confirm": 'Remover cliente?', class: "btn btn-outline-danger btn-xs", data: { toggle: "tooltip", placement: "top" },  title: 'Remover' %>
+               </div>
             </td>
             <td>
                <%= cliente.nome %>
