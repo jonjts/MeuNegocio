@@ -12,16 +12,21 @@
 //
 //= require jquery3
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
 //= require popper
 //= require bootstrap
 //= require cocoon
 //= require jquery.mask
+//= require Chart.min
+//= require shards.min
+//= require jquery.sharrre.min
+//= require extras.1.1.0.min
+//= require shards-dashboards.1.1.0.min
+//= require app/app-blog-overview.1.1.0
 
 
 
-document.addEventListener("turbolinks:reload", function() {
+
+$(function() {
 
   $('[data-toggle="tooltip"]').tooltip();
 
