@@ -17,6 +17,12 @@
  @import "shards-dashboards.1.1.0.min";
  @import "extras.1.1.0.min";
  @import "shards-dashboards.1.1.0";
+ 
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 body{
     background-color: #F5F6F8;

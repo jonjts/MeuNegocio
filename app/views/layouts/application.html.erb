@@ -18,6 +18,7 @@
 
   <body class="h-100">
     <div class="container-fluid">
+    <% unless current_user.blank? %>
       <div class="row">
         <!-- Main Sidebar -->
         <%= render 'layouts/sidebar'%>        
@@ -31,7 +32,10 @@
             </div>
         </main>
       </div>
+      <% else%>
+      <%= render 'layouts/messages' %>
+        <%= yield %>
+      <% end%>
     </div>
-    
   </body>
 </html>
