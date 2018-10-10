@@ -1,32 +1,29 @@
-<div class="d-flex justify-content-around">
-  <div class="card login" >
-   <div class="card-header">
-    <h3 class="card-title">Login</h3>
-  </div>
-    <div class="card-body">
-  <div class="row">
-    <div class='col-lg-12'>
-      <div class="col-md-12">
-        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="form-inputs">
-            <%= f.input :email, required: false, autofocus: true %>
-            <%= f.input :password, required: false, label: 'Senha' %>
-            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+<div class="page-single">
+        <div class="container">
+          <div class="row">
+            <div class="col col-login mx-auto">
+              <div class="text-center mb-6">
+                <img src="./assets/brand/tabler.svg" class="h-6" alt="">
+              </div>
+                <div class="card">
+                    <div class="card-body p-6">
+                      <div class="card-title">Login</div>
+                        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                          <div class="form-inputs">
+                            <%= f.input :email, required: false, autofocus: true %>
+                            <%= f.input :password, required: false, label: 'Senha' %>
+                            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+                          </div>
+                          <div class="form-actions">
+                            <%= f.button :submit, "Log in", class: "btn btn-primary btn-block" %>
+                          </div>
+                        <% end %>
+                    </div>
+                  </div>
+              <div class="text-center text-muted">
+                <%= render "users/shared/links" %>
+              </div>
+            </div>
           </div>
-          <div class="form-actions">
-            <%= f.button :submit, "Log in" %>
-          </div>
-        <% end %>
+        </div>
       </div>
-      <div class="col-md-12 center-block">
-        <br>
-      
-      </div>
-    </div>
-  </div>
-  <div class="text-center">
-    <%= render "users/shared/links" %>
-  </div>
-    </div>
-  </div>
-</div>
