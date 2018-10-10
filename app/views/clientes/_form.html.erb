@@ -1,31 +1,13 @@
 <%= simple_form_for  @cliente, defaults: {label_html: {class: 'form-title form'}}, html: {class: 'form-vertical'} do |f| %>
-<div class="row">
-<div class="col-md-12 col-sm-12 col-lg-12">
 
-   <div class="d-flex bd-highlight">
-      <div class="p-2 flex-grow-1 bd-highlight">
-         <div class="page-header">
-            <h1 class="page-title"><%= @cliente.new_record? ? 'Novo Cliente' : 'Alterar Cliente' %>
-               <%unless @cliente.new_record?%>
-               <small><%= @cliente.nome%></small>
-               <% end %>
-            </h1>
-         </div>
-      </div>
-      <div class="p-2 bd-highlight">
-         <div class="page-header">
-            <h1 class="page-title">
-               <%= f.submit 'Salvar', class: 'btn btn-success btn-lg'%>
-               <%unless @cliente.new_record?%>
-               <%= link_to 'Remover', cliente_path(@cliente), method: :delete, "data-confirm": 'Remover cliente?', class: "btn btn-danger btn-lg", data: { toggle: "tooltip", placement: "top" },  title: 'Remover' %>
-               <% end %>
-               <%= link_to 'Voltar', :back, class: 'card-link' %>
-            </h1>
-         </div>
-      </div>
-   </div>
-   </div>
-</div>
+<% content_for :oi do %>
+  <%= f.submit 'Salvar', class: 'btn btn-success btn-lg'%>
+      <%unless @cliente.new_record?%>
+            <%= link_to 'Remover', cliente_path(@cliente), method: :delete, "data-confirm": 'Remover cliente?', class: "btn btn-danger btn-lg", data: { toggle: "tooltip", placement: "top" },  title: 'Remover' %>
+      <% end %>
+      <%= link_to 'Voltar', :back, class: 'card-link' %>
+<% end %>
+
 
 <div class="row">
    <div class="col-md-12 col-sm-12 col-lg-12">
@@ -111,4 +93,5 @@
       </div>
    </div>
 </div>
+
 <% end %>

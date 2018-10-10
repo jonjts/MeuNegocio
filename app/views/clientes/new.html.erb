@@ -1,1 +1,28 @@
-<%= render 'form' %>
+
+<% ff = render 'form' %>
+
+<div class="col-md-12 col-sm-12 col-lg-12">
+
+   <div class="d-flex bd-highlight">
+      <div class="p-2 flex-grow-1 bd-highlight">
+         <div class="page-header">
+            <h1 class="page-title">
+                Novo Cliente
+            </h1>
+         </div>
+      </div>
+      <div class="p-2 bd-highlight">
+         <div class="page-header">
+            <h1 class="page-title">
+            <% if content_for? :oi %>
+                <%= yield :oi %>
+            <% end %>
+
+            </h1>
+         </div>
+      </div>
+   </div>
+   </div>
+</div>
+
+<%= ff %>
