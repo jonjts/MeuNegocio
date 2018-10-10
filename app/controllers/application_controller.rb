@@ -30,6 +30,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :email, :password, :current_password) }
   end
 
+  def after_sign_in_path_for(resource)
+    request.env["omniauth.origin"] || stored_location_for(resource) || dashboard_index_path
+  end
+
   private
 
   def set_empresa_session
@@ -41,7 +45,7 @@ class ApplicationController < ActionController::Base
       else
         cookies.signed[:empresa_selecionada] = current_user.empresas.first.id
         flash[:info] = "Empresa <b>#{empresa_selecionada.nome}</b> selecionada"
-        redirect_to root_path
+        redirect_to dashboard_index_path
         return
       end
     end

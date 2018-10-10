@@ -9,6 +9,7 @@ Rails.application.routes.draw do
                passwords: "users/passwords",
              }, :path_names => {:sign_in => "login", :sign_out => "logout"}
 
+  resources :dashboard
   resources :vendas
   resources :servicos
   resources :produtos

@@ -1,4 +1,4 @@
-<%= simple_form_for  @cliente, defaults: {label_html: {class: 'form-title form'}}, html: {class: 'form-vertical'} do |f| %>
+<%= simple_form_for  @cliente, defaults: {label_html: {class: 'form-title form'}}, html: {class: 'form-vertical', id: 'my_form'} do |f| %>
 
 <% content_for :oi do %>
   <%= f.submit 'Salvar', class: 'btn btn-success btn-lg'%>
