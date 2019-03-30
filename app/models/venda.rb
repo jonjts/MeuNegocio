@@ -3,9 +3,26 @@ class Venda < ApplicationRecord
 
   belongs_to :cliente
 
-  has_many :produtos_vendas
-  has_many :servicos_vendas
+  validates :cliente, presence: true
+  validates :servicos, presence: true, if: :has_produtos?
+  validates :produtos, presence: true, if: :has_servicos?
+  validates :pagamentos, presence: true
 
-  accepts_nested_attributes_for :produtos_vendas, :allow_destroy => true
-  accepts_nested_attributes_for :servicos_vendas, :allow_destroy => true
+  has_many :produtos, through: :produtos_vendas
+  has_many :servicos, through: :servicos_vendas
+  has_many :pagamentos
+
+  accepts_nested_attributes_for :produtos, :allow_destroy => true
+  accepts_nested_attributes_for :servicos, :allow_destroy => true
+  accepts_nested_attributes_for :pagamentos, :allow_destroy => true
+
+  private
+
+  def has_produtos?
+    !produtos.blank?
+  end
+
+  def has_servicos?
+    !servicos.blank?
+  end
 end

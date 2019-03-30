@@ -10,5 +10,6 @@ class VendasController < ApplicationController
 
   def new
     @venda = Venda.new
+    @clientes = empresa_selecionada.clientes
   end
 end

@@ -1,15 +1,64 @@
 <%= simple_form_for  @venda, defaults: {label_html: {class: 'form-title form'}}, html: {class: 'form-vertical'} do |f| %>
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-lg-6">
-            <div class="card">
-            <div class="card-body">
-                <h3 class="card-title">Nova Venda</h3>
-                <hr>
-            </div>
-            </div>
-        </div>
-        <div class="col-md-12 col-sm-12 col-lg-3">
-        
-        </div>
-    </div>
+
+<div class="row">
+    <div class="col-md-4 col-sm-12 col-lg-4">
+         <ul class="form-group list-unstyled">
+            <li>
+               <div class="card">
+                  <div class="card-header">
+                     <h3 class="card-title">Cliente</h3>
+                     <div class="card-options">
+            
+                     </div>
+                  </div>
+                  <div class="card-body">
+                     <div id= 'cliente_container'>
+                        <ol>
+                           <%= f.association :cliente, as: :search,
+                            data: {autocomplete_source: empresa_selecionada.clientes.pluck(:nome).to_json}%>
+                        </ol>
+                     </div>
+                  </div>
+               </div>
+            </li>
+         </ul>
+      </div>
+      <div class="col-md-8 col-sm-12 col-lg-8">
+         <ul class="form-group list-unstyled">
+            <li>
+               <div class="card">
+                  <div class="card-header">
+                     <h3 class="card-title">Endereços</h3>
+                     <div class="card-options">
+                        
+                     </div>
+                  </div>
+                  <div class="card-body">
+                     <div id= 'enderecos_container'>
+                        <ol>
+                           
+                        </ol>
+                     </div>
+                  </div>
+               </div>
+            </li>
+         </ul>
+      </div>
+      <div class="col-md-12 col-sm-12 col-lg-12">
+         <div class="well pull-right"> 
+            <%= f.submit 'Salvar', class: 'btn btn-success btn-lg'%>
+            <%unless @venda.new_record?%>
+               <%= link_to 'Remover', venda_path(@venda), method: :delete, "data-confirm": 'Remover venda?', class: "btn btn-danger btn-lg", data: { toggle: "tooltip", placement: "top" },  title: 'Remover' %>
+            <% end %>
+            <%= link_to 'Voltar', :back, class: 'card-link' %>
+         </div>
+      </div>
+   </div>
+</div>
 <% end %>
+
+<script>
+ $( "#venda_cliente_id").autocomplete({
+  source: JSON.parse($('#venda_cliente_id').data('autocomplete-source'))
+});
+</script>

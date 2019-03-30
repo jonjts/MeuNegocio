@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# jQuery UI for the Rails asset pipeline
+gem 'jquery-ui-rails'
 # Rubygem for https://tabler.github.io
 gem 'tabler-rubygem'
 # A Rails gem of the jQuery Plugin that make masks on form fields and HTML elements.
